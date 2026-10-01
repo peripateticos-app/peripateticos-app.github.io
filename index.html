@@ -3,34 +3,140 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Peripatéticos · Muy pronto</title>
+<meta name="color-scheme" content="light dark">
+<title>Peripatéticos · Tu app, desde el móvil</title>
 <meta name="description" content="Tu app, desde el móvil. Y es tuya.">
-<meta name="build" content="PP-B1-20260930-001">
+<meta name="build" content="PP-B1-20261001-002">
 <style>
-  :root { --fondo: #faf7f2; --texto: #1f1d1a; --suave: #6b655c; --marca: #c2410c; }
+  :root { --fondo: #faf7f2; --hoja: #ffffff; --texto: #1f1d1a; --suave: #6b655c; --linea: #e6dfd3; --marca: #c2410c; --marca2: #c2410c14; --tinta-marca: #ffffff; }
   @media (prefers-color-scheme: dark) {
-    :root { --fondo: #16140f; --texto: #f2eee6; --suave: #a39c90; --marca: #fb923c; }
+    :root { --fondo: #16140f; --hoja: #1f1c16; --texto: #f2eee6; --suave: #a39c90; --linea: #36312a; --marca: #fb923c; --marca2: #fb923c1f; --tinta-marca: #1a0f08; }
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
-  body {
-    background: var(--fondo); color: var(--texto);
-    font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    display: grid; place-items: center; padding: 24px 16px;
-  }
-  main { max-width: 34rem; text-align: center; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+  [hidden] { display: none !important; }
+  main { max-width: 34rem; margin: 0 auto; padding: 32px 16px 48px; }
   .marca { font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--marca); margin: 0 0 1rem; }
-  h1 { font-size: clamp(2rem, 8vw, 3rem); line-height: 1.1; margin: 0 0 1rem; }
+  h1 { font-size: clamp(2rem, 8vw, 2.8rem); line-height: 1.1; margin: 0 0 1rem; text-wrap: balance; }
+  h2 { font-size: 1.25rem; margin: 2rem 0 .75rem; }
   p { margin: 0 0 .75rem; color: var(--suave); }
-  .pronto { display: inline-block; margin-top: 1.25rem; padding: .35rem .9rem; border: 1px solid var(--marca); border-radius: 999px; color: var(--marca); font-size: .9rem; }
+  .sabores { display: grid; gap: .75rem; margin-top: 1.5rem; }
+  .sabor { display: block; width: 100%; text-align: left; font: inherit; color: inherit; background: var(--hoja); border: 1px solid var(--linea); border-radius: 14px; padding: 1rem 1.1rem; cursor: pointer; }
+  .sabor:hover, .sabor:focus-visible { border-color: var(--marca); outline: none; }
+  .sabor b { display: block; font-size: 1.05rem; margin-bottom: .2rem; }
+  .sabor span { color: var(--suave); font-size: .93rem; }
+  .boton { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 3.1rem; margin-top: 1.5rem; border-radius: 12px; background: var(--marca); color: var(--tinta-marca); font-weight: 600; font-size: 1.05rem; text-decoration: none; }
+  .nota { font-size: .88rem; margin-top: .6rem; text-align: center; }
+  ol.pasos { margin: 0; padding: 0; list-style: none; display: grid; gap: .6rem; }
+  ol.pasos li { border-left: 3px solid var(--marca); background: var(--marca2); border-radius: 0 10px 10px 0; padding: .5rem .8rem; }
+  ol.pasos b { display: block; }
+  ol.pasos span { color: var(--suave); font-size: .93rem; }
+  .cambiar { background: none; border: 0; padding: 0; font: inherit; font-size: .9rem; color: var(--marca); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+  footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--linea); font-size: .8rem; color: var(--suave); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 </style>
 </head>
 <body>
 <main>
   <p class="marca">Peripatéticos</p>
-  <h1>Tu app, desde el móvil. Y es tuya.</h1>
-  <p>Cuéntale tu idea a una IA mientras paseas y tenla publicada en minutos.</p>
-  <span class="pronto">Muy pronto</span>
+
+  <section id="eleccion">
+    <h1>Tu app, desde el móvil. Y es tuya.</h1>
+    <p>Cuéntale tu idea a una IA mientras paseas y tenla publicada en minutos. Antes de nada: ¿cómo quieres trabajar?</p>
+    <div class="sabores">
+      <button class="sabor" type="button" data-sabor="sin-tecnicismos"><b>Quiero mi app, sin tecnicismos</b><span>Me hablas de mi negocio, no de código.</span></button>
+      <button class="sabor" type="button" data-sabor="entender"><b>Quiero entender lo que pasa</b><span>Enséñame qué cambia y por qué, y el código si lo pido.</span></button>
+      <button class="sabor" type="button" data-sabor="control-total"><b>Quiero el control total</b><span>Código, servidores, datos y costes a la vista.</span></button>
+    </div>
+    <p class="nota">Puedes cambiarlo cuando quieras.</p>
+  </section>
+
+  <section id="portada" hidden>
+    <h1 id="titulo"></h1>
+    <p id="entradilla"></p>
+    <a class="boton" id="pruebalo" href="https://peripateticos-demo.fly.dev/">Pruébalo</a>
+    <p class="nota" id="nota-boton"></p>
+    <h2 id="titulo-pasos"></h2>
+    <ol class="pasos" id="pasos"></ol>
+    <p class="nota" id="acceso"></p>
+    <p class="nota"><button class="cambiar" type="button" id="cambiar">Cambiar cómo quiero trabajar</button></p>
+  </section>
+
+  <footer><span>Peripatéticos · programar paseando</span><span id="build"></span></footer>
 </main>
+<script>
+(function () {
+  var TEXTOS = {
+    'sin-tecnicismos': {
+      titulo: 'Tu negocio, con su app. Sin tecnicismos.',
+      entradilla: 'Dices lo que quieres con tus palabras, desde el móvil, y la app cambia. Nada de código a la vista: solo tu negocio.',
+      nota: 'Abre una app recién nacida: así empieza la tuya.',
+      tituloPasos: 'Cómo funciona',
+      pasos: [
+        ['Lo cuentas', '«Quiero una lista de reservas para mi tienda.»'],
+        ['Lo ves', 'En unos minutos está publicada, con su dirección.'],
+        ['Lo cambias hablando', '«Pon el botón más grande.» Y listo.']
+      ],
+      acceso: 'Prueba gratis: 3 cambios en 14 días. Muy pronto.'
+    },
+    'entender': {
+      titulo: 'Tu app, desde el móvil. Y entiendes cada cambio.',
+      entradilla: 'Hablas con la IA; ella cambia la app, la prueba y la publica, y te cuenta qué cambió y por qué. El código está ahí cuando quieras verlo.',
+      nota: 'Abre una app recién nacida: tiene web y servidor, y responde «Servidor en marcha».',
+      tituloPasos: 'Qué pasa por debajo',
+      pasos: [
+        ['Pides un cambio', 'La IA lo hace en el código de tu app y lo explica en llano.'],
+        ['Se prueba solo', 'Si algo falla, no se publica.'],
+        ['Se publica', 'En tu dirección, y queda anotado en la bitácora de tu app.']
+      ],
+      acceso: 'Prueba gratis: 3 cambios en 14 días. Muy pronto.'
+    },
+    'control-total': {
+      titulo: 'Tu app, tu infraestructura, desde el móvil.',
+      entradilla: 'Claude Code sobre tus cuentas: el código en tu GitHub, el servidor en tu Fly.io, las copias en tu Drive. Si te vas, te lo llevas todo.',
+      nota: 'Abre una app nacida de la plantilla: servidor Rust (axum) en Fly.io, una máquina que se apaga sola.',
+      tituloPasos: 'Lo que recibes',
+      pasos: [
+        ['Repositorio propio', 'Nace de la plantilla, sin historial ajeno, con su CLAUDE.md.'],
+        ['Despliegue verificado', 'Cada push se prueba, se despliega y se comprueba con el SHA en /salud.'],
+        ['Coste a la vista', 'Tu Claude y un servidor que gasta céntimos y se apaga sin visitas.']
+      ],
+      acceso: 'Con tu propia infraestructura: por invitación, de momento.'
+    }
+  };
+
+  var eleccion = document.getElementById('eleccion'), portada = document.getElementById('portada');
+  function guarda(s) { try { if (s) localStorage.setItem('sabor', s); else localStorage.removeItem('sabor'); } catch (e) {} }
+  function leido() { try { return localStorage.getItem('sabor'); } catch (e) { return null; } }
+
+  function muestra(sabor) {
+    var t = TEXTOS[sabor];
+    if (!t) { eleccion.hidden = false; portada.hidden = true; return; }
+    document.getElementById('titulo').textContent = t.titulo;
+    document.getElementById('entradilla').textContent = t.entradilla;
+    document.getElementById('nota-boton').textContent = t.nota;
+    document.getElementById('titulo-pasos').textContent = t.tituloPasos;
+    document.getElementById('acceso').textContent = t.acceso;
+    var ol = document.getElementById('pasos'); ol.textContent = '';
+    t.pasos.forEach(function (p) {
+      var li = document.createElement('li'), b = document.createElement('b'), s = document.createElement('span');
+      b.textContent = p[0]; s.textContent = p[1]; li.appendChild(b); li.appendChild(s); ol.appendChild(li);
+    });
+    eleccion.hidden = true; portada.hidden = false;
+    window.scrollTo(0, 0);
+  }
+
+  document.querySelectorAll('.sabor').forEach(function (b) {
+    b.addEventListener('click', function () { var s = b.getAttribute('data-sabor'); guarda(s); muestra(s); });
+  });
+  document.getElementById('cambiar').addEventListener('click', function () { guarda(null); muestra(null); });
+
+  // ?sabor=… manda (para enlazar un sabor concreto); si no, el que se eligió antes.
+  var pedido = new URLSearchParams(location.search).get('sabor');
+  if (pedido && TEXTOS[pedido]) guarda(pedido);
+  muestra(pedido && TEXTOS[pedido] ? pedido : leido());
+  document.getElementById('build').textContent = document.querySelector('meta[name="build"]').content;
+})();
+</script>
 </body>
 </html>
